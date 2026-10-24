@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}ဖျက်ရန်{% endblock %}
+
+{% block content %}
+  <section class="panel">
+    <p class="eyebrow">အတည်ပြုချက်</p>
+    <h1>ဒီအလုပ်ကို ဖျက်မလား။</h1>
+    <p class="lede">“{{ task.title }}” ကို ပြန်ယူလို့ မရတော့ပါ။</p>
+    <form method="post" class="form-actions">
+      {% csrf_token %}
+      <button class="button button-danger" type="submit">ဖျက်မည်</button>
+      <a class="text-link" href="{% url 'task_list' %}">မလုပ်တော့ပါ</a>
+    </form>
+  </section>
+{% endblock %}

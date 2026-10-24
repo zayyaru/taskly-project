@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}အကောင့်ဖွင့်ရန်{% endblock %}
+
+{% block content %}
+  <section class="panel auth">
+    <p class="eyebrow">Taskly</p>
+    <h1>အကောင့်အသစ်</h1>
+    <p class="lede">စကားဝှက်ကို အနည်းဆုံး စာလုံး ၈ လုံး ထားပါ။ နံပါတ်ချည်း သို့မဟုတ် အလွန်ရိုးရှင်းသော စကားဝှက်ကို လက်မခံပါ။</p>
+    <form method="post" class="stack">
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+      {% endif %}
+      {% for field in form %}
+        <label class="field">
+          <span>{{ field.label }}</span>
+          {{ field }}
+          {% if field.errors %}
+            <small>{{ field.errors|striptags }}</small>
+          {% endif %}
+        </label>
+      {% endfor %}
+      <button class="button" type="submit">အကောင့်ဖွင့်မည်</button>
+    </form>
+    <p class="switch">အကောင့်ရှိပြီးသားလား။ <a href="{% url 'login' %}">ဝင်မည်</a></p>
+  </section>
+{% endblock %}
